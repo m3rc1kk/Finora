@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+    <header class="header">
+        <div class="header__inner container">
+            <a href="#" class="header__logo logo">
+                <img src="{% static 'images/logo.svg' %}" alt="Finora" class="logo__image" loading="lazy" width="155px" height="23px">
+            </a>
+
+            <div class="header__welcome hidden-mobile">
+                <p>Welcome to Finora</p>
+            </div>
+
+            <div class="header__buttons">
+                <a href="#" class="header__login">Log In</a>
+                <button class="header__button button button--small">Get Started</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+    <div class="sign-up form__wrapper container">
+        <form class="sign-up__form form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="sign-up__title form__title">Sign Up</h2>
+            <div class="sign-up__fields form__fields">
+                {% render_field form.username class+="sign-up__field form__field" placeholder='Username' autocomplete="new-password" %}
+                {% render_field form.email class+="sign-up__field form__field" placeholder='E-mail' autocomplete="new-password" %}
+                {% render_field form.password class+="sign-up__field form__field" placeholder='Password' autocomplete="new-password" %}
+                {% render_field form.password2 class+="sign-up__field form__field" placeholder='Repeat Password' autocomplete="new-password" %}
+
+                <div class="file-input-wrapper">
+                    {{ form.avatar|add_class:'sign-up__field form__field file-input'|attr:'id:avatar-upload' }}
+                    <label for="avatar-upload" class="file-input-label">Avatar</label>
+                </div>
+
+            </div>
+            <button type="submit" class="sign-up__button form__button button">Sign Up</button>
+            <div class="sign-up__additionally form__additionally">
+                <p class="sign-up__additionally--bottom form__additionally--bottom">Have an account? <a class="sign-up__additionally--register form__additionally--register" href="#">Login</a></p>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}

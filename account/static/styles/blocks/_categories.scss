@@ -1,0 +1,109 @@
+.categories {
+
+
+  &__list {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 8px;
+
+    @include full-screen {
+      grid-template-rows: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(3,1fr);
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-light);
+    row-gap: 3px;
+    width: 150px;
+    height: 150px;
+    border-radius: var(--border-radius-small);
+    background-color: var(--color-red);
+    cursor: default;
+    position: relative;
+
+    @include hover {
+      transition-duration: var(--transition-duration);
+      background-color: transparent;
+      border: var(--border-button);
+
+      &::after {
+        content: "Delete";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--color-dark);
+        z-index: 1;
+
+      }
+    }
+
+    @include tablet {
+      width: 120px;
+      height: 120px;
+      font-size: 16px;
+    }
+
+    @include mobile {
+      font-size: 14px;
+      width: 110px;
+      height: 110px;
+    }
+
+
+    &--add {
+      background-color: transparent;
+      border: var(--border-button);
+
+      @include hover {
+        opacity: .6;
+
+        &::after {
+          content: "";
+        }
+      }
+
+    }
+
+    &--groceries {
+      background-color: var(--color-green);
+    }
+
+    &--transport {
+      background-color: var(--color-dark);
+    }
+
+    &--education {
+      background-color: var(--color-blue);
+    }
+
+    &--family {
+      background-color: var(--color-purple);
+    }
+
+    &--entertainment {
+      background-color: var(--color-pink);
+    }
+
+    &--taxi {
+      background-color: var(--color-orange);
+    }
+
+  }
+
+  &__image {
+    @include tablet {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

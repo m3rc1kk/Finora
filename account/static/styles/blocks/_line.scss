@@ -1,0 +1,55 @@
+.line {
+  position: absolute;
+  top: 0;
+  left: 357px;
+  opacity: .1;
+  display: block;
+  width: 1px;
+  height: 100vh;
+  background-color: var(--color-dark);
+
+  &--vertical {
+    &__dashboard {
+      height: 115%;
+    }
+  }
+
+  &--horizontal {
+    top: 120px;
+    left: 357px;
+    width: calc(100vw - 357px);
+    height: 1px;
+    opacity: 0.1;
+    background-color: var(--color-dark);
+
+    &__dashboard {
+      width: calc(100vw - 373px);
+    }
+
+    @include full-screen {
+      width: calc(100vw - 330px);
+    }
+
+    @include desktop {
+      top: 100px;
+      width: calc(100vw - 250px);
+    }
+
+    @include tablet {
+      top: 85px;
+      width: calc(100vw - 200px);
+    }
+  }
+
+  @include full-screen {
+    left: 330px;
+  }
+
+  @include desktop {
+    left: 250px;
+  }
+
+  @include tablet {
+    left: 200px;
+  }
+}

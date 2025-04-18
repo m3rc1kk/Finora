@@ -1,0 +1,9 @@
+.add-transaction {
+  @include tablet {
+    min-height: 70vh;
+  }
+
+  @include mobile {
+    min-height: 50vh;
+  }
+}

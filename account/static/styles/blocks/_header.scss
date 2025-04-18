@@ -1,0 +1,134 @@
+.header {
+  padding-top: 45px;
+
+  @include desktop {
+    padding-top: 30px;
+  }
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  &__logo {
+    @include desktop {
+      width: 130px;
+      height: auto;
+    }
+
+    @include tablet {
+      width: 100px;
+      height: auto;
+    }
+
+    @include mobile {
+      width: 80px;
+      height: auto;
+    }
+  }
+
+  &__welcome {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include tablet {
+      font-size: 16px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    column-gap: 32px;
+
+    @include desktop {
+      column-gap: 24px;
+    }
+
+    @include tablet {
+      column-gap: 16px;
+    }
+
+    @include mobile {
+      column-gap: 12px;
+    }
+  }
+
+  &__login {
+    @include hover {
+      opacity: .8;
+    }
+
+    @include tablet {
+      font-size: 16px;
+    }
+
+    @include mobile {
+      font-size: 14px;
+    }
+  }
+
+  &__button {
+    @include desktop {
+      width: 150px;
+    }
+
+    @include tablet {
+      height: 50px;
+      font-size: 16px;
+      width: 120px;
+    }
+
+    @include mobile {
+      font-size: 14px;
+      width: 106px;
+      height: 40px;
+    }
+  }
+
+
+  &__avatar {
+    &-image {
+      border-radius: 50%;
+      border: var(--border-avatar);
+      padding: 1px;
+
+      @include desktop {
+        width: 40px;
+        height: 40px;
+      }
+
+      @include tablet {
+        width: 32px;
+        height: 32px;
+      }
+
+
+    }
+  }
+
+  &__category {
+    margin-right: auto;
+    margin-left: 179px;
+
+    @include full-screen {
+      margin-left: 220px;
+    }
+
+    @include desktop {
+      margin-left: 150px;
+    }
+
+    @include tablet {
+      font-size: 18px;
+      margin-left: 110px;
+    }
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+:root {
+  --color-dark: #373737;
+  --color-light: #FFFFFF;
+  --color-red: #FF0C59;
+  --color-green: #00D270;
+  --color-blue: #22B4F3;
+  --color-purple: #9200E6;
+  --color-orange: #F3D322;
+  --color-pink: #E600CF;
+  --color-dark-alt: rgba(55, 55, 55, 0.6);
+
+  --border: 1px solid rgba(55, 55, 55, 0.1);
+  --border-avatar: 1px solid rgba(255, 12, 89, 0.5);
+  --border-field: 1px solid rgba(55, 55, 55, 0.2);
+  --border-button: 1px solid rgba(55, 55, 55);
+
+
+
+  --border-radius-small: 20px;
+  --border-radius-large: 60px;
+
+  --font-family-base: "Poppins", sans-serif;
+  --font-family-title: "Gilroy", sans-serif;
+
+  --container-width: 1800px;
+  --container-padding-x: 16px;
+
+  --input-height: 70px;
+  --button-height: 60px;
+
+  --transition-duration: .2s;
+}

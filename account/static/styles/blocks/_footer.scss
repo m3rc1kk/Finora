@@ -1,0 +1,65 @@
+.footer {
+  position: relative;
+
+
+  &__decoration {
+    position: absolute;
+    bottom: -4.9vh;
+    left: 0;
+
+    @include full-screen-above {
+      display: none;
+    }
+
+    @include desktop {
+      display: none;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    column-gap: 24px;
+
+    @include desktop {
+      column-gap: 16px;
+      justify-content: center;
+      margin-top: -70px;
+    }
+
+    @include tablet {
+      column-gap: 8px;
+      margin-top: -110px;
+    }
+
+    @include mobile {
+      column-gap: 120px;
+      margin-top: -60px;
+    }
+  }
+
+  &__item {
+    @include hover {
+      opacity: .8;
+      cursor: pointer;
+      transition-duration: .2s;
+    }
+
+    @include desktop {
+      width: 32px;
+      height: 32px;
+
+    }
+
+    @include tablet {
+      width: 28px;
+      height: 28px;
+    }
+
+    @include mobile {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+.nav {
+  padding-top: 40px;
+  @include mobile {
+    padding-top: 20px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 260px;
+    row-gap: 24px;
+
+    @include mobile {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 335px;
+    }
+  }
+
+  &__item {
+    font-size: 18px;
+    opacity: .6;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+
+    &--active {
+      opacity: 1;
+    }
+
+    &-icon {
+      @include tablet {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    @include tablet {
+      font-size: 16px;
+      column-gap: 8px;
+    }
+
+    @include mobile {
+      font-size: 14px;
+    }
+  }
+
+}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+    <header class="header">
+        <div class="header__inner container">
+            <a href="#" class="header__logo logo">
+                <img src="{% static 'images/logo.svg' %}" alt="Finora" class="logo__image" loading="lazy" width="155px" height="23px">
+            </a>
+
+            <div class="header__welcome hidden-mobile">
+                <p>Welcome to Finora</p>
+            </div>
+
+            <div class="header__buttons">
+                <a href="#" class="header__login">Log In</a>
+                <button class="header__button button button--small">Get Started</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="sign-in form__wrapper container">
+            <form method="post" class="sign-in__form form" autocomplete="off">
+                {% csrf_token %}
+                <h2 class="sign-in__title form__title">Sign In</h2>
+                <div class="sign-in__fields form__fields">
+                    {% render_field form.username class+="sign-in__field form__field" placeholder='Username/E-mail' autocomplete="new-password" %}
+                    {% render_field form.password class+="sign-in__field form__field" placeholder='Password' autocomplete="new-password" %}
+                </div>
+                <button type="submit" class="sign-in__button form__button button">Log In</button>
+                <div class="sign-in__additionally form__additionally">
+                    <a href="#" class="sign-in__additionally--top form__additionally--top">Forgot your password?</a>
+                    <p class="sign-in__additionally--bottom form__additionally--bottom">Don't have an account? <a class="sign-in__additionally--register form__additionally--register" href="#">Register</a></p>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}

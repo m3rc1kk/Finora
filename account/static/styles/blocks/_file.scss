@@ -1,0 +1,50 @@
+.file-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.file-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+
+  &:focus + .file-input-label {
+    outline: none;
+  }
+}
+
+.file-input-label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--input-height);
+  padding-left: 24px;
+  border: var(--border-field);
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  color: var(--color-dark-alt);
+
+  @include tablet {
+    padding-left: 20px;
+    height: 60px;
+  }
+
+  @include mobile {
+    font-size: 14px;
+    height: 50px;
+  }
+
+  @include hover {
+    transition-duration: var(--transition-duration);
+    border-color: var(--color-red);
+    color: var(--color-red);
+  }
+}
+
+

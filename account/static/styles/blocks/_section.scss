@@ -1,0 +1,38 @@
+.section {
+  position: absolute;
+  top: 166px;
+  left: 381px;
+
+  @include desktop {
+    left: 280px;
+    top: 146px;
+  }
+
+  @include tablet {
+    left: 210px;
+    top: 131px;
+  }
+
+  @include mobile {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+  }
+
+  &__title {
+    @include tablet {
+      font-size: 18px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+}

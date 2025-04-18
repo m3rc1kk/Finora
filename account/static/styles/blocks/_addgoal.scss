@@ -1,0 +1,9 @@
+.add-goal {
+  @include tablet {
+    min-height: 70vh;
+  }
+
+  @include mobile {
+    min-height: 45vh;
+  }
+}

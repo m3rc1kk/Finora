@@ -1,0 +1,15 @@
+.sign-up {
+
+  @include desktop {
+    min-height: 90vh;
+  }
+
+  @include tablet {
+    min-height: 80vh;
+  }
+
+  @include mobile {
+    min-height: 60vh;
+  }
+
+}

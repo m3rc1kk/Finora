@@ -1,0 +1,9 @@
+.add-category {
+  @include tablet {
+    min-height: 60vh;
+  }
+
+  @include mobile {
+    min-height: 30vh;
+  }
+}

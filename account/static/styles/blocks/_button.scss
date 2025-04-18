@@ -1,0 +1,43 @@
+.button {
+  font-weight: 500;
+  height: var(--button-height);
+  width: 500px;
+  color: var(--color-light);
+  background-color: var(--color-red);
+  border: 0;
+  border-radius: var(--border-radius-small);
+
+
+  &--small {
+    width: 175px;
+    height: 56px;
+  }
+
+  &--medium {
+    width: 238px;
+    font-size: 20px;
+    height: 66px;
+
+  }
+
+  @include hover {
+    background-color: var(--color-dark);
+  }
+
+  &--add {
+    width: 150px;
+    background-color: transparent;
+    border: var(--border-button);
+    font-size: 18px;
+    color: var(--color-dark);
+    height: 44px;
+    text-align: center;
+    padding-top: 8px;
+
+    @include hover {
+      color: var(--color-light);
+    }
+  }
+
+
+}

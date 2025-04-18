@@ -1,0 +1,99 @@
+.transactions {
+
+  @include mobile {
+    position: relative;
+    margin-top: -100px;
+  }
+
+  @include tablet {
+    font-size: 16px;
+  }
+
+  @include mobile {
+    font-size: 14px;
+  }
+
+  &__inner {
+    width: 78vw;
+
+    @include full-screen {
+      width: 70vw;
+    }
+
+    @include mobile {
+      position: absolute;
+      left: 0;
+    }
+  }
+
+
+
+  &__thead-column {
+    padding: 0 16px 24px 16px;
+  }
+
+  &__del {
+    display: none;
+
+  }
+
+  &__table {
+    border-collapse: collapse;
+
+  }
+
+
+  &__thead-column,
+  &__tbody-data {
+    text-align: start;
+    font-weight: 400;
+  }
+
+  &__tbody {
+
+    &-del {
+      transition-duration: var(--transition-duration);
+      cursor: pointer;
+      @include hover {
+        color: var(--color-red);
+      }
+    }
+
+    &-income {
+      color: var(--color-green);
+    }
+
+    &-expense {
+      color: var(--color-red);
+    }
+
+    &-data {
+      padding:0 16px 32px 16px;
+
+
+
+      @include full-screen {
+        padding: 0 16px 24px 16px;
+      }
+    }
+
+  }
+
+  &__button {
+    @include desktop {
+      font-size: 16px;
+      height: 36px;
+      width: 120px;
+    }
+
+    @include mobile {
+      font-size: 14px;
+      height: 32px;
+      width: 100px;
+    }
+  }
+
+}
+
+
+

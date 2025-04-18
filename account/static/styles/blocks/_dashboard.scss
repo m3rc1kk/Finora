@@ -1,0 +1,131 @@
+.dashboard {
+
+  &__block {
+    border: var(--border);
+    border-radius: var(--border-radius-small);
+    padding: 24px 24px 0 24px;
+
+    &-title {
+      font-weight: 400;
+    }
+
+    &-button {
+      font-size: 16px;
+      color: var(--color-red);
+
+      @include hover {
+        color: var(--color-black);
+      }
+    }
+
+    &-header {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    align-items: center;
+    column-gap: 28px;
+  }
+
+  &__card {
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    row-gap: 8px;
+    width: 330px;
+    height: 180px;
+    position: relative;
+
+    &--big {
+      width: 387px;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 29px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border: 1px solid var(--color-red);
+      border-bottom-left-radius: var(--border-radius-small);
+      border-bottom-right-radius: var(--border-radius-small);
+    }
+
+    &-amount {
+      font-weight: 600;
+      font-size: 32px;
+    }
+
+    &-additionally {
+      font-size: 16px;
+
+      &--better {
+        color: var(--color-green);
+      }
+
+      &--worse {
+        color: var(--color-red);
+      }
+
+    }
+  }
+
+  &__diagrams {
+    display: flex;
+    align-items: center;
+    column-gap: 24px;
+  }
+
+  &__analytics {
+    width: 955px;
+    height: 370px;
+  }
+
+  &__chart {
+    width: 484px;
+    height: 370px;
+  }
+
+  &__lists {
+    display: flex;
+    align-items: center;
+    column-gap: 24px;
+
+  }
+
+  &__transactions {
+    width: 616px;
+    height: 318px;
+  }
+
+  &__goals {
+    width: 823px;
+    height: 318px;
+  }
+
+  &__tbody-data {
+    padding:0 16px 12px 50px;
+    font-size: 16px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+
+  &__thead-column {
+    padding:24px 16px 16px 50px;
+    font-size: 16px;
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+
+}
