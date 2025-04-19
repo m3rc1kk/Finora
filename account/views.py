@@ -1,7 +1,8 @@
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render
-
-from .forms import UserForm
+from django.shortcuts import render, redirect
+from django.views.generic import DetailView
+from .forms import UserForm, UserEditForm
+from .models import User
 
 
 def register(request):
@@ -19,3 +20,17 @@ def register(request):
     else:
         form = UserForm()
     return render(request, 'registration/register.html', {'form': form})
+
+def profile(request):
+    return render(request, 'account/profile.html', {})
+
+def profile_edit(request):
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, request.FILES, instance=request.user, user=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = UserEditForm(instance=request.user)
+
+    return render(request, 'account/profile_edit.html', {"form": form})
