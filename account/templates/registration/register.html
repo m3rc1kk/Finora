@@ -4,7 +4,7 @@
 {% block content %}
     <header class="header">
         <div class="header__inner container">
-            <a href="#" class="header__logo logo">
+            <a href="{% url 'main:welcome' %}" class="header__logo logo">
                 <img src="{% static 'images/logo.svg' %}" alt="Finora" class="logo__image" loading="lazy" width="155px" height="23px">
             </a>
 
@@ -13,8 +13,8 @@
             </div>
 
             <div class="header__buttons">
-                <a href="#" class="header__login">Log In</a>
-                <button class="header__button button button--small">Get Started</button>
+                <a href="{% url 'login' %}" class="header__login">Log In</a>
+                <a href="{% url 'register' %}" class="header__button button button--small button--link">Get Started</a>
             </div>
         </div>
     </header>
@@ -36,9 +36,12 @@
                 </div>
 
             </div>
+            {% for error in form.errors.values %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
             <button type="submit" class="sign-up__button form__button button">Sign Up</button>
             <div class="sign-up__additionally form__additionally">
-                <p class="sign-up__additionally--bottom form__additionally--bottom">Have an account? <a class="sign-up__additionally--register form__additionally--register" href="#">Login</a></p>
+                <p class="sign-up__additionally--bottom form__additionally--bottom">Have an account? <a class="sign-up__additionally--register form__additionally--register" href="{% url 'login' %}">Login</a></p>
             </div>
         </form>
     </div>

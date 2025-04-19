@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <header class="header">
+        <div class="header__inner container">
+            <a href="{% url 'main:welcome' %}" class="header__logo logo">
+                <img src="{% static 'images/logo.svg' %}" alt="Finora" class="logo__image" loading="lazy" width="155px" height="23px">
+            </a>
+
+            <div class="header__welcome hidden-mobile">
+                <p>Welcome to Finora</p>
+            </div>
+
+            <div class="header__buttons">
+                <a href="{% url 'login' %}" class="header__login">Log In</a>
+                <a href="{% url 'register' %}" class="header__button button button--small button--link">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="hero">
+            <div class="hero__inner">
+                <h1 class="hero__title">Start Controlling Your <b class="hero__title--red">Money</b> With Us</h1>
+                <div class="hero__subtitle">
+                    <p>With our finance app you can track and control your income and expenses. Trust us and you will become much richer</p>
+                </div>
+                <a href="{% url 'register' %}" class="hero__button button button--medium button--link">Get Started</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__inner container">
+            <div class="footer__decoration">
+                <img src="{% static 'images/welcome/decor.svg' %}" width="457" height="354" alt="" loading="lazy" class="footer__decoration-image">
+            </div>
+            <div class="footer__social">
+                <ul class="footer__list">
+                   <li class="footer__item">
+                       <a href="#" class="footer__link">
+                           <img src="{% static 'images/welcome/telegram.svg' %}" width="44" height="44" loading="lazy" alt="" class="footer__icon">
+                       </a>
+                   </li>
+
+                    <li class="footer__item">
+                        <a href="#" class="footer__link">
+                            <img src="{% static 'images/welcome/vk.svg' %}" width="44" height="44" loading="lazy" alt="" class="footer__icon">
+                        </a>
+                    </li>
+
+                    <li class="footer__item">
+                        <a href="#" class="footer__link">
+                            <img src="{% static 'images/welcome/insta.svg' %}" width="43" height="43" loading="lazy" alt="" class="footer__icon">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

@@ -1,4 +1,11 @@
-@import 'normalize', 'fonts', 'mixins', 'variables', 'media', 'utils', 'globals';
+@import
+  'normalize',
+  'fonts',
+  'mixins',
+  'variables',
+  'media', 'utils',
+  'globals';
+
 @import
   'blocks/button',
   'blocks/header',
@@ -19,4 +26,5 @@
   'blocks/section',
   'blocks/categories',
   'blocks/transactions',
-  'blocks/dashboard';
+  'blocks/dashboard',
+  'blocks/error';

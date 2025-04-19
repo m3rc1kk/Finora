@@ -12,9 +12,9 @@ def register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
-            user_login = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            user_login = authenticate(username=user.username, password=form.cleaned_data['password'])
 
-            if user_login is None:
+            if user_login is not None:
                 login(request, user_login)
     else:
         form = UserForm()

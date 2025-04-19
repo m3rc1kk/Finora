@@ -270,6 +270,12 @@ h4 {
   background-color: var(--color-red);
   border: 0;
   border-radius: var(--border-radius-small);
+  position: relative;
+}
+.button--link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .button--small {
   width: 175px;
@@ -560,7 +566,7 @@ h4 {
   bottom: -4.9vh;
   left: 0;
 }
-@media (min-width: 1920px) {
+@media (min-width: 1921px) {
   .footer__decoration {
     display: none;
   }
@@ -1425,6 +1431,28 @@ select.form__field {
 }
 .dashboard__thead-column:first-child {
   padding-left: 0;
+}
+
+.error {
+  text-align: center;
+  display: block;
+  margin: 10px auto 0;
+  max-width: 400px;
+  font-size: 14px;
+  margin-top: -4px;
+  padding-bottom: 12px;
+}
+@media (max-width: 1280px) {
+  .error {
+    max-width: 350px;
+  }
+}
+@media (max-width: 1023px) {
+  .error {
+    font-size: 12px;
+    max-width: 250px;
+    padding-bottom: 12px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

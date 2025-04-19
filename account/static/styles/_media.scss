@@ -1,3 +1,4 @@
+$full-screen-above-decoration: 1921px;
 $full-screen-above: 1920px;
 $full-screen: 1919px;
 
@@ -9,6 +10,12 @@ $tablet: 1023px;
 
 $mobile-above: 768px;
 $mobile: 767px;
+
+@mixin full-screen-above-decoration {
+  @media (min-width: $full-screen-above-decoration) {
+    @content;
+  }
+}
 
 @mixin full-screen-above {
   @media (min-width: $full-screen-above) {

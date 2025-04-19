@@ -7,7 +7,7 @@
     bottom: -4.9vh;
     left: 0;
 
-    @include full-screen-above {
+    @include full-screen-above-decoration {
       display: none;
     }
 
