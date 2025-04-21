@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Transaction
+
+
+@admin.register(Transaction)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('user', 'transaction_type', 'amount', 'date' )
+
