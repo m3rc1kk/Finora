@@ -1344,12 +1344,6 @@ select.form__field {
     color: var(--color-black);
   }
 }
-.dashboard__block-header {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-}
 .dashboard__cards {
   display: flex;
   align-items: center;

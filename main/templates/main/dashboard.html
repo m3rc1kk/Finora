@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+
+<header class="header">
+    <div class="header__inner container">
+        <a href="{% url 'main:dashboard' %}" class="header__logo logo">
+            <img src="{% static 'images/logo.svg' %}" alt="Finora" class="logo__image" loading="lazy" width="155px" height="23px">
+        </a>
+
+        <div class="header__avatar avatar">
+            <a href="{% url 'profile' %}" class="avatar__link header__avatar-link">
+                <img src="{{ request.user.avatar.url }}" width="44" height="44" loading="lazy" alt="" class="avatar__image header__avatar-image">
+            </a>
+        </div>
+    </div>
+</header>
+
+
+<main class="content">
+    <div class="line line--vertical line--vertical__dashboard hidden-mobile"></div>
+    <div class="line line--horizontal line--horizontal__dashboard hidden-mobile"></div>
+    <aside class="sidebar container">
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item nav__item--active">
+                    <img src="{% static 'images/sidebar/dashboard.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                    <a href="#" class="nav__link">Dashboard</a>
+                </li>
+
+                <li class="nav__item">
+                    <img src="{% static 'images/sidebar/credit-card.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                    <a href="#" class="nav__link">Transactions</a>
+                </li>
+
+                <li class="nav__item ">
+                    <img src="{% static 'images/sidebar/category.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                    <a href="#" class="nav__link">Categories</a>
+                </li>
+
+                <li class="nav__item">
+                    <img src="{% static 'images/sidebar/star.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                    <a href="#" class="nav__link">Goals</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <section class="section dashboard">
+        <div class="section__inner dashboard__inner container">
+            <ul class="dashboard__cards">
+                <li class="dashboard__card dashboard__card--big dashboard__block">
+                        <h4 class="dashboard__card-title dashboard__block-title">Balance</h4>
+                    <div class="dashboard__card-amount">
+                        <p>12,340$</p>
+                    </div>
+                    <div class="dashboard__card-additionally">
+                        <p>Personal best: 15,242$</p>
+                    </div>
+                </li>
+                <li class="dashboard__card dashboard__block">
+                    <h4 class="dashboard__card-title dashboard__block-title">Total Income - April</h4>
+                    <div class="dashboard__card-amount">
+                        <p>6,455$</p>
+                    </div>
+                    <div class="dashboard__card-additionally">
+                        <p><span class="dashboard__card-additionally--better">40% better</span> than last month</p>
+                    </div>
+                </li>
+                <li class="dashboard__card dashboard__block">
+                    <h4 class="dashboard__card-title dashboard__block-title">Total Expense - April</h4>
+                    <div class="dashboard__card-amount">
+                        <p>4,242$</p>
+                    </div>
+                    <div class="dashboard__card-additionally">
+                        <p><span class="dashboard__card-additionally--worse">12% worse</span> than last month</p>
+                    </div>
+                </li>
+                <li class="dashboard__card dashboard__block">
+                    <h4 class="dashboard__card-title dashboard__block-title">Difference - April</h4>
+                    <div class="dashboard__card-amount">
+                        <p>2,213$</p>
+                    </div>
+                    <div class="dashboard__card-additionally">
+                        <p><span class="dashboard__card-additionally--better">32% better</span> than last month</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="dashboard__diagrams">
+                <div class="dashboard__analytics dashboard__block">
+                    <h4 class="dashboard__block-title dashboard__analytics-title">Analytics</h4>
+                </div>
+                <div class="dashboard__chart dashboard__block">
+                    <h4 class="dashboard__block-title dashboard__chart-title">Chart By Category</h4>
+                </div>
+            </div>
+            <div class="dashboard__lists">
+                <div class="dashboard__transactions dashboard__block">
+                    <header class="dashboard__transactions-header dashboard__block-header">
+                        <h4 class="dashboard__transactions-title dashboard__block-title">Recent Transactions</h4>
+                        <a href="#" class="dashboard__transactions-button dashboard__block-button">View All</a>
+                    </header>
+                    <table class="transactions__table">
+                        <thead class="transactions__thead">
+                        <tr class="transactions__thead-columns">
+                            <th class="transactions__thead-column dashboard__thead-column">Type</th>
+                            <th class="transactions__thead-column dashboard__thead-column">Category</th>
+                            <th class="transactions__thead-column dashboard__thead-column">Date</th>
+                            <th class="transactions__thead-column dashboard__thead-column">Amount</th>
+
+                        </tr>
+                        </thead>
+                        <tbody class="transactions__tbody">
+                        <tr class="transactions__tbody-string">
+                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
+                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
+
+                        </tr>
+                        <tr class="transactions__tbody-string">
+                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
+                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
+
+                        </tr>
+                        <tr class="transactions__tbody-string">
+                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
+                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
+
+                        </tr>
+                        <tr class="transactions__tbody-string">
+                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
+                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
+
+                        </tr>
+                        <tr class="transactions__tbody-string">
+                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
+                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
+
+                        </tr>
+                        <tr class="transactions__tbody-string">
+                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
+                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
+                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
+
+                        </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="dashboard__goals dashboard__block">
+                    <header class="dashboard__goals-header dashboard__block-header">
+                        <h4 class="dashboard__goals-title dashboard__block-title">Goals</h4>
+                        <a href="#" class="dashboard__goals-button dashboard__block-button">View All</a>
+                    </header>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+</body>
+
+{% endblock %}
