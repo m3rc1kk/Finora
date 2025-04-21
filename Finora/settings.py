@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
     'main.apps.MainConfig',
+    'categories.apps.CategoriesConfig',
 ]
 
 MIDDLEWARE = [
