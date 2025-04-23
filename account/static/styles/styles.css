@@ -1263,6 +1263,16 @@ select.form__field {
 .transactions__del {
   display: none;
 }
+@media (hover: hover) {
+  .transactions__del:hover {
+    transition-duration: 0s;
+  }
+}
+@media (hover: none) {
+  .transactions__del:active {
+    transition-duration: 0s;
+  }
+}
 .transactions__table {
   border-collapse: collapse;
 }

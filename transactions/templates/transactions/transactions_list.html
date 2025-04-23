@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <body>
+        <header class="header">
+            <div class="header__inner container">
+                <a href="{% url 'main:dashboard' %}" class="header__logo logo">
+                    <img src="{% static 'images/logo.svg' %}" alt="Finora" class="logo__image" loading="lazy" width="155px" height="23px">
+                </a>
+
+                <h3 class="header__category hidden-mobile">Categories</h3>
+
+                <div class="header__avatar avatar">
+                    {% if request.user.avatar %}
+                    <a href="{% url 'profile' %}" class="avatar__link header__avatar-link">
+                        <img src="{{ request.user.avatar.url }}" width="44" height="44" loading="lazy" alt="" class="avatar__image header__avatar-image">
+                    </a>
+                    {% else %}
+                        <a href="{% url 'profile' %}" class="avatar__link header__avatar-link">
+                            <img src="{% static 'images/defaultavatar.png' %}" width="44" height="44" loading="lazy" alt="" class="avatar__image header__avatar-image">
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+    <div class="line line--vertical hidden-mobile"></div>
+    <div class="line line--horizontal hidden-mobile"></div>
+    <aside class="sidebar container">
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <img src="{% static 'images/sidebar/dashboard.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                    <a href="{% url 'main:dashboard' %}" class="nav__link">Dashboard</a>
+                </li>
+
+                <li class="nav__item nav__item--active">
+                    <img src="{% static 'images/sidebar/credit-card.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                    <a href="{% url 'transactions:transactions_list' %}" class="nav__link">Transactions</a>
+                </li>
+
+                <li class="nav__item ">
+                    <img src="{% static 'images/sidebar/category.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                    <a href="{% url 'categories:category_list' %}" class="nav__link">Categories</a>
+                </li>
+
+                <li class="nav__item">
+                    <img src="{% static 'images/sidebar/star.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                    <a href="#" class="nav__link">Goals</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <section class="section transactions">
+        <div class="section__inner transactions__inner container">
+            <div class="transactions__header section__header">
+                <h3 class="section__title transactions__title hidden-mobile">Transactions Table</h3>
+                <a href="{% url 'transactions:add_transaction' %}" class="transactions__button button button--add">Add</a>
+            </div>
+            <table class="transactions__table">
+                <thead class="transactions__thead">
+                    <tr class="transactions__thead-columns">
+                        <th class="transactions__thead-column">Type</th>
+                        <th class="transactions__thead-column">Category</th>
+                        <th class="transactions__thead-column">Date</th>
+                        <th class="transactions__thead-column">Amount</th>
+                        <th class="transactions__thead-column transactions__del">Del</th>
+                    </tr>
+                </thead>
+                <tbody class="transactions__tbody">
+                    {% for transaction in transactions %}
+                        <tr class="transactions__tbody-string">
+                            <td class="transactions__tbody-data">{{ transaction.transaction_type }}</td>
+                            <td class="transactions__tbody-data">{{ transaction.category }}</td>
+                            <td class="transactions__tbody-data">{{ transaction.date }}</td>
+                            {% if transaction.transaction_type == 'Income' %}
+                                <td class="transactions__tbody-data transactions__tbody-income">{{ transaction.amount }} $</td>
+                            {% else %}
+                                <td class="transactions__tbody-data transactions__tbody-expense">{{ transaction.amount }} $</td>
+                            {% endif %}
+                            <td class="transactions__tbody-data transactions__tbody-del"><a href="{% url 'transactions:transaction_delete' transaction.id %}">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+    </body>
+{% endblock %}

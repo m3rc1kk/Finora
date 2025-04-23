@@ -10,13 +10,22 @@
                     <img src="{% static 'images/logo.svg' %}" alt="Finora" class="logo__image" loading="lazy" width="155px" height="23px">
                 </a>
 
+
+
                 <div class="header__avatar avatar">
+                    {% if request.user.avatar %}
                     <a href="{% url 'profile' %}" class="avatar__link header__avatar-link">
                         <img src="{{ request.user.avatar.url }}" width="44" height="44" loading="lazy" alt="" class="avatar__image header__avatar-image">
                     </a>
+                    {% else %}
+                        <a href="{% url 'profile' %}" class="avatar__link header__avatar-link">
+                            <img src="{% static 'images/defaultavatar.png' %}" width="44" height="44" loading="lazy" alt="" class="avatar__image header__avatar-image">
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </header>
+
         <main class="content">
             <div class="add-category form__wrapper container">
                 <form method="post" class="add-category__form form">

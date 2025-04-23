@@ -34,7 +34,9 @@
 
   &__del {
     display: none;
-
+    @include hover {
+      transition-duration: 0s;
+    }
   }
 
   &__table {

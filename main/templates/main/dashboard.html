@@ -40,7 +40,7 @@
 
                 <li class="nav__item">
                     <img src="{% static 'images/sidebar/credit-card.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
-                    <a href="#" class="nav__link">Transactions</a>
+                    <a href="{% url 'transactions:transactions_list' %}" class="nav__link">Transactions</a>
                 </li>
 
                 <li class="nav__item ">
