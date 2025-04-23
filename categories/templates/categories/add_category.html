@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <body>
+        <header class="header">
+            <div class="header__inner container">
+                <a href="{% url 'main:dashboard' %}" class="header__logo logo">
+                    <img src="{% static 'images/logo.svg' %}" alt="Finora" class="logo__image" loading="lazy" width="155px" height="23px">
+                </a>
+
+                <div class="header__avatar avatar">
+                    <a href="{% url 'profile' %}" class="avatar__link header__avatar-link">
+                        <img src="{{ request.user.avatar.url }}" width="44" height="44" loading="lazy" alt="" class="avatar__image header__avatar-image">
+                    </a>
+                </div>
+            </div>
+        </header>
+        <main class="content">
+            <div class="add-category form__wrapper container">
+                <form method="post" class="add-category__form form">
+                    {% csrf_token %}
+                    <h2 class="add-category__title form__title">Add Category</h2>
+                    <div class="add-category__fields form__fields">
+                        {% render_field form.name class+="add-category__field form__field" placeholder="Name" autocomplete="new-password" %}
+                        {% render_field form.color class+="add-category__field add-category__field--color" autocomplete="new-password" %}
+
+                    </div>
+                    <button type="submit" class="add-category__button form__button button">Add</button>
+                </form>
+            </div>
+        </main>
+    </body>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <body>
+        <header class="header">
+            <div class="header__inner container">
+                <a href="{% url 'main:dashboard' %}" class="header__logo logo">
+                    <img src="{% static 'images/logo.svg' %}" alt="Finora" class="logo__image" loading="lazy" width="155px" height="23px">
+                </a>
+
+                <h3 class="header__category hidden-mobile">Categories</h3>
+
+                <div class="header__avatar avatar">
+                    {% if request.user.avatar %}
+                    <a href="{% url 'profile' %}" class="avatar__link header__avatar-link">
+                        <img src="{{ request.user.avatar.url }}" width="44" height="44" loading="lazy" alt="" class="avatar__image header__avatar-image">
+                    </a>
+                    {% else %}
+                        <a href="{% url 'profile' %}" class="avatar__link header__avatar-link">
+                            <img src="{% static 'images/defaultavatar.png' %}" width="44" height="44" loading="lazy" alt="" class="avatar__image header__avatar-image">
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+        <main class="content">
+            <div class="line line--vertical hidden-mobile"></div>
+            <div class="line line--horizontal hidden-mobile"></div>
+            <aside class="sidebar container">
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <img src="{% static 'images/sidebar/dashboard.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                            <a href="{% url 'main:dashboard' %}" class="nav__link">Dashboard</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <img src="{% static 'images/sidebar/credit-card.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                            <a href="#" class="nav__link">Transactions</a>
+                        </li>
+
+                        <li class="nav__item  nav__item--active">
+                            <img src="{% static 'images/sidebar/category.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                            <a href="{% url 'categories:category_list' %}" class="nav__link">Categories</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <img src="{% static 'images/sidebar/star.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
+                            <a href="#" class="nav__link">Goals</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <section class="section categories">
+                <div class="section__inner categories__inner container">
+                    <h3 class="section__title categories__title hidden-mobile">Categories List</h3>
+                    <ul class="categories__list">
+
+                        {% for category in system_categories %}
+                            <li class="categories__item" style="background-color: {{ category.color }}">
+                                        <div class="categories__title">
+                                            <p>{{ category.name }}</p>
+                                        </div>
+                            </li>
+
+                        {% endfor %}
+
+                        {% for category in categories %}
+                            <a href="{% url 'categories:category_delete' category.id %}" class="categories__link">
+                                <li class="categories__item categories__item--custom" style="background-color: {{ category.color }}">
+                                        <div class="categories__title">
+                                            <p>{{ category.name }}</p>
+                                        </div>
+                                </li>
+                            </a>
+                        {% endfor %}
+
+                        <a href="{% url 'categories:add_category' %}" class="categories__link">
+                            <li class="categories__item categories__item--add">
+                                    <div class="categories__title">
+                                        <img src="{% static 'images/categories/plus.svg' %}" width="24" height="24" loading="lazy" alt="" class="categories__image">
+                                    </div>
+                            </li>
+                        </a>
+
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </body>
+{% endblock %}

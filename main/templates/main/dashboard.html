@@ -10,10 +10,18 @@
             <img src="{% static 'images/logo.svg' %}" alt="Finora" class="logo__image" loading="lazy" width="155px" height="23px">
         </a>
 
+        <h3 class="header__category hidden-mobile">Dashboard</h3>
+
         <div class="header__avatar avatar">
+            {% if request.user.avatar %}
             <a href="{% url 'profile' %}" class="avatar__link header__avatar-link">
                 <img src="{{ request.user.avatar.url }}" width="44" height="44" loading="lazy" alt="" class="avatar__image header__avatar-image">
             </a>
+            {% else %}
+                <a href="{% url 'profile' %}" class="avatar__link header__avatar-link">
+                    <img src="{% static 'images/defaultavatar.png' %}" width="44" height="44" loading="lazy" alt="" class="avatar__image header__avatar-image">
+                </a>
+            {% endif %}
         </div>
     </div>
 </header>
@@ -27,7 +35,7 @@
             <ul class="nav__list">
                 <li class="nav__item nav__item--active">
                     <img src="{% static 'images/sidebar/dashboard.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
-                    <a href="#" class="nav__link">Dashboard</a>
+                    <a href="{% url 'main:dashboard' %}" class="nav__link">Dashboard</a>
                 </li>
 
                 <li class="nav__item">
@@ -37,7 +45,7 @@
 
                 <li class="nav__item ">
                     <img src="{% static 'images/sidebar/category.svg' %}" width="20" height="20" alt="" loading="lazy" class="nav__item-icon hidden-mobile">
-                    <a href="#" class="nav__link">Categories</a>
+                    <a href="{% url 'categories:category_list' %}" class="nav__link">Categories</a>
                 </li>
 
                 <li class="nav__item">

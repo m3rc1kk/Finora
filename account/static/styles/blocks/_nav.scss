@@ -26,6 +26,11 @@
     align-items: center;
     column-gap: 12px;
 
+    @include hover {
+      transition-duration: var(--transition-duration);
+      opacity: 1;
+    }
+
     &--active {
       opacity: 1;
     }

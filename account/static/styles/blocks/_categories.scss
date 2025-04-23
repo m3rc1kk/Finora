@@ -3,10 +3,13 @@
 
   &__list {
     display: grid;
-    grid-auto-flow: column;
+    grid-auto-flow: row;
     gap: 8px;
 
+    grid-template-columns: repeat(9, 1fr);
+
     @include full-screen {
+      grid-auto-flow: column;
       grid-template-rows: repeat(2, 1fr);
     }
 
@@ -30,9 +33,10 @@
     cursor: default;
     position: relative;
 
-    @include hover {
+    &--custom {
+      @include hover {
       transition-duration: var(--transition-duration);
-      background-color: transparent;
+      background-color: transparent !important;
       border: var(--border-button);
 
       &::after {
@@ -45,6 +49,7 @@
         z-index: 1;
 
       }
+    }
     }
 
     @include tablet {
@@ -66,44 +71,10 @@
 
       @include hover {
         opacity: .6;
-
-        &::after {
-          content: "";
-        }
       }
 
     }
 
-    &--groceries {
-      background-color: var(--color-green);
-    }
-
-    &--transport {
-      background-color: var(--color-dark);
-    }
-
-    &--education {
-      background-color: var(--color-blue);
-    }
-
-    &--family {
-      background-color: var(--color-purple);
-    }
-
-    &--entertainment {
-      background-color: var(--color-pink);
-    }
-
-    &--taxi {
-      background-color: var(--color-orange);
-    }
-
   }
 
-  &__image {
-    @include tablet {
-      width: 20px;
-      height: 20px;
-    }
-  }
 }

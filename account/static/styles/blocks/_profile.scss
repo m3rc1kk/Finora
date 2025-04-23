@@ -9,6 +9,7 @@
   }
 
   &__inner {
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     row-gap: 24px;
@@ -59,6 +60,7 @@
     border: var(--border);
     font-weight: 400;
     cursor: pointer;
+
     @include hover {
       background-color: var(--color-dark);
       color: var(--color-light);

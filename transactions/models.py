@@ -11,11 +11,16 @@ class Transaction(models.Model):
     )
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_transactions')
-    transaction_type = models.CharField(max_length=7, choices=TRANSACTION_TYPES)
+    transaction_type = models.CharField(
+        max_length=7,
+        choices=TRANSACTION_TYPES,
+        blank=False,
+        default='expense',
+    )
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
 
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='transactions', null = True, blank = True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='transactions', blank=False, null=True)
 
     class Meta:
         ordering = ['-date']
