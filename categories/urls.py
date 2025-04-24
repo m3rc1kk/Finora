@@ -3,7 +3,7 @@ from . import views
 
 app_name = 'categories'
 urlpatterns = [
-    path('add/', views.add_category, name='add_category'),
+    path('add/', views.CategoryCreateView.as_view(), name='add_category'),
     path('delete/<int:category_id>/', views.category_delete, name='category_delete'),
-    path('', views.category_list, name='category_list'),
+    path('', views.CategoryListView.as_view(), name='category_list'),
 ]

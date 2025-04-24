@@ -8,6 +8,7 @@ def user_directory_path(instance, filename):
 
 class User(AbstractUser):
     avatar = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     class Meta:
         db_table = 'user'

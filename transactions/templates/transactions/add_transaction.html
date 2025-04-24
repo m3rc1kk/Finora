@@ -40,6 +40,13 @@
                 {% render_field form.date class+="add-transaction__field form__field form__field--wicons" autocomplete="new-password" %}
                 {% render_field form.amount class+="add-transaction__field form__field" placeholder='Amount' autocomplete="new-password" %}
             </div>
+            {% if messages %}
+              {% for message in messages %}
+                <div class="error alert-{{ message.tags }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
             <button type="submit" class="add-transaction__button form__button button">Add</button>
         </form>
     </div>

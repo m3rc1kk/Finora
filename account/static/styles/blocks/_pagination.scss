@@ -1,0 +1,12 @@
+.pagination {
+  &__list {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+  }
+
+  &__no-selected {
+    opacity: .6;
+  }
+
+}
