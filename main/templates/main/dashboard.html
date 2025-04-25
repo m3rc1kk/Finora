@@ -64,34 +64,38 @@
                         <p>{{ request.user.balance }}$</p>
                     </div>
                     <div class="dashboard__card-additionally">
-                        <p>Personal best: 15,242$</p>
+                        <p>Personal best: {{ max_balance }}$</p>
                     </div>
                 </li>
                 <li class="dashboard__card dashboard__block">
-                    <h4 class="dashboard__card-title dashboard__block-title">Total Income - April</h4>
+                    <h4 class="dashboard__card-title dashboard__block-title">Total Income - {{ current_month }}</h4>
                     <div class="dashboard__card-amount">
-                        <p>6,455$</p>
+                        <p>{{ current_month_income|floatformat:2 }}$</p>
                     </div>
                     <div class="dashboard__card-additionally">
                         <p><span class="dashboard__card-additionally--better">40% better</span> than last month</p>
                     </div>
                 </li>
                 <li class="dashboard__card dashboard__block">
-                    <h4 class="dashboard__card-title dashboard__block-title">Total Expense - April</h4>
+                    <h4 class="dashboard__card-title dashboard__block-title">Total Expense - {{ current_month }}</h4>
                     <div class="dashboard__card-amount">
-                        <p>4,242$</p>
+                        <p>{{ current_month_expenses|floatformat:2 }}$</p>
                     </div>
                     <div class="dashboard__card-additionally">
                         <p><span class="dashboard__card-additionally--worse">12% worse</span> than last month</p>
                     </div>
                 </li>
                 <li class="dashboard__card dashboard__block">
-                    <h4 class="dashboard__card-title dashboard__block-title">Difference - April</h4>
+                    <h4 class="dashboard__card-title dashboard__block-title">Difference - {{ current_month }}</h4>
                     <div class="dashboard__card-amount">
-                        <p>2,213$</p>
+                        <p>{{ current_month_difference|floatformat:2 }}$</p>
                     </div>
                     <div class="dashboard__card-additionally">
-                        <p><span class="dashboard__card-additionally--better">32% better</span> than last month</p>
+                        {% if month_comparison.comparison == 'better' %}
+                            <p><span class="dashboard__card-additionally--better">{{ month_comparison.percent_diff }}% better</span> than last month</p>
+                        {% else %}
+                            <p><span class="dashboard__card-additionally--worse">{{ month_comparison.percent_diff }}% worse</span> than last month</p>
+                        {% endif %}
                     </div>
                 </li>
             </ul>
@@ -107,7 +111,7 @@
                 <div class="dashboard__transactions dashboard__block">
                     <header class="dashboard__transactions-header dashboard__block-header">
                         <h4 class="dashboard__transactions-title dashboard__block-title">Recent Transactions</h4>
-                        <a href="#" class="dashboard__transactions-button dashboard__block-button">View All</a>
+                        <a href="{% url 'transactions:transactions_list' %}" class="dashboard__transactions-button dashboard__block-button">View All</a>
                     </header>
                     <table class="transactions__table">
                         <thead class="transactions__thead">
@@ -120,51 +124,18 @@
                         </tr>
                         </thead>
                         <tbody class="transactions__tbody">
-                        <tr class="transactions__tbody-string">
-                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
-                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
-
-                        </tr>
-                        <tr class="transactions__tbody-string">
-                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
-                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
-
-                        </tr>
-                        <tr class="transactions__tbody-string">
-                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
-                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
-
-                        </tr>
-                        <tr class="transactions__tbody-string">
-                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
-                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
-
-                        </tr>
-                        <tr class="transactions__tbody-string">
-                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
-                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
-
-                        </tr>
-                        <tr class="transactions__tbody-string">
-                            <td class="transactions__tbody-data dashboard__tbody-data">Expense</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">Health</td>
-                            <td class="transactions__tbody-data dashboard__tbody-data">25.05.2024</td>
-                            <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">2,500$</td>
-
-                        </tr>
-
-
-
+                        {% for transaction in transactions %}
+                            <tr class="transactions__tbody-string">
+                                <td class="transactions__tbody-data dashboard__tbody-data">{{ transaction.transaction_type }}</td>
+                                <td class="transactions__tbody-data dashboard__tbody-data">{{ transaction.category }}</td>
+                                <td class="transactions__tbody-data dashboard__tbody-data">{{ transaction.date }}</td>
+                                {% if transaction.transaction_type == 'Income' %}
+                                    <td class="transactions__tbody-data transactions__tbody-income dashboard__tbody-data">{{ transaction.amount }}$</td>
+                                {% else %}
+                                    <td class="transactions__tbody-data transactions__tbody-expense dashboard__tbody-data">{{ transaction.amount }}$</td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
