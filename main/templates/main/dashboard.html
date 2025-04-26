@@ -119,6 +119,40 @@
                 </div>
                 <div class="dashboard__chart dashboard__block">
                     <h4 class="dashboard__block-title dashboard__chart-title">Chart By Category</h4>
+                    <div class="dashboard__chart-wrapper">
+                        <ul class="dashboard__chart-list">
+                            {% for category, color, amount in categories_data %}
+                                <li class="dashboard__chart-item">
+                                    <span class="dashboard__chart-color" style="background-color: {{ color }}"></span>
+                                    {{ category }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                        <div class="dashboard__chart-canvas">
+                            <canvas id="categoryChart" width="270"></canvas>
+                        </div>
+                    </div>
+                    <script>
+                        const ctx = document.getElementById('categoryChart').getContext('2d');
+                        new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: {{ categories_json|safe }},
+                                datasets: [{
+                                    data: {{ amounts_json|safe }},
+                                    backgroundColor: {{ colors_json|safe }},
+                                }]
+                            },
+                            options: {
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    }
+                                }
+                            }
+                        });
+                    </script>
                 </div>
             </div>
             <div class="dashboard__lists">

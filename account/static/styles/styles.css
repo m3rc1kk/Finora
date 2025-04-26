@@ -1432,6 +1432,31 @@ select.form__field {
 .dashboard__thead-column:first-child {
   padding-left: 0;
 }
+.dashboard__chart-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+.dashboard__chart-wrapper {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+}
+.dashboard__chart-color {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dashboard__chart-item {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+}
+.dashboard__chart-canvas {
+  display: flex;
+}
 
 .error {
   text-align: center;

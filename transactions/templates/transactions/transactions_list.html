@@ -86,20 +86,18 @@
                 </tbody>
             </table>
             <ul class="pagination__list">
-                {% for p in paginator.page_range %}
-                    {% if page_obj.has_other_pages %}
+                {% if page_obj.has_other_pages %}
+                    {% for p in paginator.page_range %}
                         {% if page_obj.number == p %}
                             <li class="pagination__selected">{{ p }}</li>
-
-
-                        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
-                            <li class = 'pagination__no-selected'>
-                                <a class = 'pag__no-selected ' href="?page={{p}}">{{ p }}</a>
+                        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                            <li class="pagination__no-selected">
+                                <a class="pag__no-selected" href="?page={{ p }}">{{ p }}</a>
                             </li>
-
                         {% endif %}
-                    {% endif %}
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
+
             </ul>
         </div>
     </section>

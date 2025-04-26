@@ -42,11 +42,10 @@ class TransactionsListView(LoginRequiredMixin, ListView):
     model = Transaction
     paginate_by = 10
     template_name = 'transactions/transactions_list.html'
+    context_object_name = 'transactions'
 
-    def get_context_data(self, **kwargs):
-        context = super(TransactionsListView, self).get_context_data(**kwargs)
-        context['transactions'] = Transaction.objects.filter(user = self.request.user)
-        return context
+    def get_queryset(self):
+        return Transaction.objects.filter(user=self.request.user)
 
 @login_required
 def transactions_delete(request, transaction_id):

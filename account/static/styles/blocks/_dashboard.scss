@@ -128,4 +128,36 @@
     }
   }
 
+  &__chart {
+    &-list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 4px;
+    }
+    &-wrapper {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+
+    }
+
+    &-color {
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      column-gap: 6px;
+    }
+
+    &-canvas {
+      display: flex;
+    }
+  }
+
 }
