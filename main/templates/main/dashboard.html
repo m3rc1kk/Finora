@@ -73,7 +73,13 @@
                         <p>{{ current_month_income|floatformat:2 }}$</p>
                     </div>
                     <div class="dashboard__card-additionally">
-                        <p><span class="dashboard__card-additionally--better">40% better</span> than last month</p>
+                        {% if month_comparison.comparison_income == 'better' %}
+                            <p><span class="dashboard__card-additionally--better">{{ month_comparison.percent_income }}% better</span> than last month</p>
+                        {% elif month_comparison.comparison_income == 'worse' %}
+                            <p><span class="dashboard__card-additionally--worse">{{ month_comparison.percent_income }}% worse</span> than last month</p>
+                        {% else %}
+                            <p><span class="dashboard__card-additionally--same">Same as last month</p>
+                        {% endif %}
                     </div>
                 </li>
                 <li class="dashboard__card dashboard__block">
@@ -82,7 +88,13 @@
                         <p>{{ current_month_expenses|floatformat:2 }}$</p>
                     </div>
                     <div class="dashboard__card-additionally">
-                        <p><span class="dashboard__card-additionally--worse">12% worse</span> than last month</p>
+                        {% if month_comparison.comparison_expense == 'better' %}
+                            <p><span class="dashboard__card-additionally--better">{{ month_comparison.percent_expense }}% better</span> than last month</p>
+                        {% elif month_comparison.comparison_expense == 'worse' %}
+                            <p><span class="dashboard__card-additionally--worse">{{ month_comparison.percent_expense }}% worse</span> than last month</p>
+                        {% else %}
+                            <p><span class="dashboard__card-additionally--same">Same as last month</p>
+                        {% endif %}
                     </div>
                 </li>
                 <li class="dashboard__card dashboard__block">
@@ -93,8 +105,10 @@
                     <div class="dashboard__card-additionally">
                         {% if month_comparison.comparison == 'better' %}
                             <p><span class="dashboard__card-additionally--better">{{ month_comparison.percent_diff }}% better</span> than last month</p>
-                        {% else %}
+                        {% elif month_comparison.comparison == 'worse' %}
                             <p><span class="dashboard__card-additionally--worse">{{ month_comparison.percent_diff }}% worse</span> than last month</p>
+                        {% else %}
+                            <p><span class="dashboard__card-additionally--same">Same as last month</p>
                         {% endif %}
                     </div>
                 </li>

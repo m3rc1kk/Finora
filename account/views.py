@@ -1,6 +1,9 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView
+from django.views import View
+from django.views.generic import DetailView, TemplateView
 from .forms import UserForm, UserEditForm
 from .models import User
 
@@ -17,13 +20,15 @@ def register(request):
 
             if user_login is not None:
                 login(request, user_login)
+                return redirect('main:dashboard')
     else:
         form = UserForm()
     return render(request, 'registration/register.html', {'form': form})
 
-def profile(request):
-    return render(request, 'account/profile.html', {})
+class Profile(LoginRequiredMixin, TemplateView):
+    template_name = 'account/profile.html'
 
+@login_required
 def profile_edit(request):
     if request.method == 'POST':
         form = UserEditForm(request.POST, request.FILES, instance=request.user, user=request.user)

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from datetime import datetime
 from calendar import month_name
@@ -7,7 +8,7 @@ from transactions.models import Transaction
 
 def welcome(request):
     return render(request, 'main/welcome.html', {})
-
+@login_required
 def dashboard(request):
     user = request.user
     current_month = datetime.now().month

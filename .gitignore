@@ -6,3 +6,6 @@
 !*/migrations/__init__.py
 
 media/
+
+cert.crt
+cert.key

@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
@@ -6,7 +8,7 @@ from django.contrib import messages
 from .forms import TransactionForm
 from .models import Transaction
 
-class TransactionCreateView(CreateView):
+class TransactionCreateView(LoginRequiredMixin, CreateView):
     model = Transaction
     form_class = TransactionForm
     success_url = reverse_lazy('transactions:list')
@@ -36,12 +38,17 @@ class TransactionCreateView(CreateView):
         return render(request, 'transactions/add_transaction.html', {'form': form})
 
 
-class TransactionsListView(ListView):
+class TransactionsListView(LoginRequiredMixin, ListView):
     model = Transaction
     paginate_by = 10
     template_name = 'transactions/transactions_list.html'
-    context_object_name = 'transactions'
 
+    def get_context_data(self, **kwargs):
+        context = super(TransactionsListView, self).get_context_data(**kwargs)
+        context['transactions'] = Transaction.objects.filter(user = self.request.user)
+        return context
+
+@login_required
 def transactions_delete(request, transaction_id):
     transaction = get_object_or_404(Transaction, user = request.user, id = transaction_id)
     transaction.delete()

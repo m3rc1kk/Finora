@@ -79,9 +79,38 @@ class User(AbstractUser):
         else:
             comparison = 'same'
 
+        if prev_income != 0:
+            percent_income = ((current_income - prev_income) / abs(prev_income)) * 100
+        else:
+            percent_income = 0
+
+        if current_income > prev_income:
+            comparison_income = 'better'
+        elif current_income < prev_income:
+            comparison_income = 'worse'
+        else:
+            comparison_income = 'same'
+
+        if prev_expense != 0:
+            percent_expense = ((current_expense - prev_expense) / abs(prev_expense)) * 100
+        else:
+            percent_expense = 0
+
+        if current_expense > prev_expense:
+            comparison_expense = 'better'
+        elif current_expense < prev_expense:
+            comparison_expense = 'worse'
+        else:
+            comparison_expense = 'same'
+
+
         return {
             'percent_diff': abs(round(percent_diff)),
             'comparison': comparison,
+            'comparison_income': comparison_income,
+            'percent_income': abs(round(percent_income)),
+            'percent_expense': abs(round(percent_expense)),
+            'comparison_expense': comparison_expense,
         }
 
 

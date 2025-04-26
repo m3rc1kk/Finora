@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
@@ -6,7 +8,7 @@ from .forms import CategoryForm
 from .models import Category
 
 
-class CategoryCreateView(CreateView):
+class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = Category
     form_class = CategoryForm
     success_url = reverse_lazy('category_list')
@@ -22,6 +24,7 @@ class CategoryCreateView(CreateView):
             form = CategoryForm()
         return render(request, 'categories/add_category.html', {"form": form})
 
+@login_required
 def add_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -35,7 +38,7 @@ def add_category(request):
 
     return render(request, 'categories/add_category.html', {"form": form})
 
-class CategoryListView(ListView):
+class CategoryListView(LoginRequiredMixin, ListView):
     model = Category
     template_name = 'categories/categories_list.html'
 

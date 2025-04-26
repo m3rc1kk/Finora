@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-tz9kj12x=czt8r#xf+aani!lz)@qciau84(ysh*@1a0xxeo+bv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['finora.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'categories.apps.CategoriesConfig',
     'transactions.apps.TransactionsConfig',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -139,5 +140,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
 
-LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_REDIRECT_URL = 'main:dashboard'
 LOGOUT_REDIRECT_URL = 'login'
