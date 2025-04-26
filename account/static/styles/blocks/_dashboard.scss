@@ -158,6 +158,12 @@
     &-canvas {
       display: flex;
     }
+
+    &-analytics {
+      display: flex;
+      padding-top: 24px;
+      height: 300px;
+    }
   }
 
 }

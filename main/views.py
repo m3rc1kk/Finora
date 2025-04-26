@@ -43,6 +43,31 @@ def dashboard(request):
         category_colors[category] = item['category__color']
         categories_data.append((category, item['category__color'], float(item['total'])))
 
+    labels = []
+    income_data = []
+    expense_data = []
+
+    for i in range(12):
+        month = (current_month - i - 1) % 12 + 1
+        year = current_year if current_month - i - 1 >= 0 else current_year - 1
+        labels.insert(0, month_name[month])
+
+        income = Transaction.objects.filter(
+            user=user,
+            transaction_type='Income',
+            date__year=year,
+            date__month=month
+        ).aggregate(total=Sum('amount'))['total'] or 0
+
+        expense = Transaction.objects.filter(
+            user=user,
+            transaction_type='Expense',
+            date__year=year,
+            date__month=month
+        ).aggregate(total=Sum('amount'))['total'] or 0
+
+        income_data.insert(0, float(income))
+        expense_data.insert(0, float(expense))
 
     return render(request, 'main/dashboard.html', {
         'current_month_income': income,
@@ -55,4 +80,8 @@ def dashboard(request):
         'categories_json': json.dumps(categories, cls=DjangoJSONEncoder),
         'amounts_json': json.dumps(list(amounts.values()), cls=DjangoJSONEncoder),
         'colors_json': json.dumps(list(category_colors.values()), cls=DjangoJSONEncoder),
-        'categories_data': categories_data,})
+        'categories_data': categories_data,
+        'labels': json.dumps(labels, cls=DjangoJSONEncoder),
+        'income_data': json.dumps(income_data, cls=DjangoJSONEncoder),
+        'expense_data': json.dumps(expense_data, cls=DjangoJSONEncoder)
+    })

@@ -1457,6 +1457,11 @@ select.form__field {
 .dashboard__chart-canvas {
   display: flex;
 }
+.dashboard__chart-analytics {
+  display: flex;
+  padding-top: 24px;
+  height: 300px;
+}
 
 .error {
   text-align: center;
