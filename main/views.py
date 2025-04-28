@@ -52,22 +52,22 @@ def dashboard(request):
         year = current_year if current_month - i - 1 >= 0 else current_year - 1
         labels.insert(0, month_name[month])
 
-        income = Transaction.objects.filter(
+        income_dia = Transaction.objects.filter(
             user=user,
             transaction_type='Income',
             date__year=year,
             date__month=month
         ).aggregate(total=Sum('amount'))['total'] or 0
 
-        expense = Transaction.objects.filter(
+        expense_dia = Transaction.objects.filter(
             user=user,
             transaction_type='Expense',
             date__year=year,
             date__month=month
         ).aggregate(total=Sum('amount'))['total'] or 0
 
-        income_data.insert(0, float(income))
-        expense_data.insert(0, float(expense))
+        income_data.insert(0, float(income_dia))
+        expense_data.insert(0, float(expense_dia))
 
     return render(request, 'main/dashboard.html', {
         'current_month_income': income,
