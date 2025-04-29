@@ -14,8 +14,13 @@ class TransactionCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('transactions:list')
     template_name = 'transactions/add_transaction.html'
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def post(self, request, *args, **kwargs):
-        form = TransactionForm(request.POST)
+        form = TransactionForm(request.POST, user = request.user)
         if form.is_valid():
             transaction = form.save(commit=False)
             transaction.user = request.user
